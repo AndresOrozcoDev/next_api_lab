@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Next JS RestApi Laboratory
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-v15.4.2-black?logo=next.js)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-First, run the development server:
+Laboratorio experimental usando **Next.js v15** para explorar y demostrar el desarrollo de servicios HTTP (`/api`) con soporte para despliegue serverless en **Vercel**. Ideal para prácticas de arquitectura ligera y conexión con otros servicios (como OpenAI).
 
+---
+
+## 🔗 Demo en Vivo
+
+Puedes ver el laboratorio funcionando en producción aquí:
+
+👉 [Next JS API Lab](api-lab-murex.vercel.app)
+
+Desplegado automáticamente con [Vercel](https://vercel.com), utilizando funciones serverless para los endpoints API.
+
+---
+
+---
+
+## 📡 Endpoints Disponibles
+
+Actualmente, esta API expone los siguientes endpoints públicos en formato JSON:
+
+### 🗺️ Ubicación (Colombia)
+
+| Método | Endpoint                          | Descripción                                                                 |
+|--------|-----------------------------------|-----------------------------------------------------------------------------|
+| GET    | `/api/location/states`           | Retorna todos los departamentos de Colombia.                               |
+| GET    | `/api/location/cities`           | Retorna todas las ciudades y municipios del país.                          |
+| GET    | `/api/location/states/:id`       | Retorna las ciudades y municipios del departamento especificado por `:id`. |
+
+### 🤖 OpenAI Chat
+
+| Método | Endpoint                 | Descripción                                                                 |
+|--------|--------------------------|-----------------------------------------------------------------------------|
+| POST   | `/api/openai/message`    | Envía un mensaje al modelo GPT y retorna una respuesta generada por IA.    |
+
+> [!WARNING]
+> Actualmente **no requieren headers especiales**. Todas las respuestas están en formato `application/json`.
+
+---
+
+## 🛠️ Requerimientos
+
+- [Node](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+## 💻 Ejecucion local
+
+Clonar el repositorio
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    git clone https://github.com/AndresOrozcoDev/next_api_lab.git
+    cd next_api_lab
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instalar las dependencias
+```bash
+    npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ejecutar el servidor
+```bash
+    npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 👨‍💻 Autor
 
-To learn more about Next.js, take a look at the following resources:
+Desarrollado con 💙 por [Andrés Orozco](https://github.com/AndresOrozcoDev)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📬 [andresorozcodev@gmail.com](mailto:andresorozcodev@gmail.com)
+- 🌐 [LinkedIn](https://www.linkedin.com/in/andresorozcodev)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
