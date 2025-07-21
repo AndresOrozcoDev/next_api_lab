@@ -1,9 +1,21 @@
 # 🚀 Next JS RestApi Laboratory
 
-![Next.js](https://img.shields.io/badge/Next.js-v15.4.2-black?logo=next.js)
-![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
-![Status](https://img.shields.io/badge/status-in%20development-yellow)
-![License](https://img.shields.io/badge/license-MIT-blue)
+<p align="center">
+    <img src="https://img.shields.io/badge/Next.js-15.4.2-black?logo=next.js&logoColor=white" />
+    <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react&logoColor=black" />
+    <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" />
+    <img src="https://img.shields.io/badge/ESLint-9.x-4B32C3?logo=eslint&logoColor=white" />
+    <img src="https://img.shields.io/badge/OpenAI-5.10.1-412991?logo=openai&logoColor=white" />
+    <img src="https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js&logoColor=white" />
+    <img src="https://img.shields.io/badge/@types/react-19.x-blue?logo=react&logoColor=white" />
+    <img src="https://img.shields.io/badge/@types/node-20.x-43853D?logo=node.js&logoColor=white" />
+</p>
+
+<p align="center">
+    ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+    ![Status](https://img.shields.io/badge/status-in%20development-yellow)
+    ![License](https://img.shields.io/badge/license-MIT-blue)
+</p>
 
 Laboratorio experimental usando **Next.js v15** para explorar y demostrar el desarrollo de servicios HTTP (`/api`) con soporte para despliegue serverless en **Vercel**. Ideal para prácticas de arquitectura ligera y conexión con otros servicios (como OpenAI).
 
@@ -16,8 +28,6 @@ Puedes ver el laboratorio funcionando en producción aquí:
 👉 [Next JS API Lab](api-lab-murex.vercel.app)
 
 Desplegado automáticamente con [Vercel](https://vercel.com), utilizando funciones serverless para los endpoints API.
-
----
 
 ---
 
