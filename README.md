@@ -9,9 +9,9 @@
     <img src="https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js&logoColor=white" />
     <img src="https://img.shields.io/badge/@types/react-19.x-blue?logo=react&logoColor=white" />
     <img src="https://img.shields.io/badge/@types/node-20.x-43853D?logo=node.js&logoColor=white" />
-    ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
-    ![Status](https://img.shields.io/badge/status-in%20development-yellow)
-    ![License](https://img.shields.io/badge/license-MIT-blue)
+    <img src="https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel" />
+    <img src="https://img.shields.io/badge/status-in%20development-yellow" />
+    <img src="https://img.shields.io/badge/license-MIT-blue" />
 </p>
 
 
