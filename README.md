@@ -16,65 +16,65 @@
 
 
 
-Laboratorio experimental usando **Next.js v15** para explorar y demostrar el desarrollo de servicios HTTP (`/api`) con soporte para despliegue serverless en **Vercel**. Ideal para prácticas de arquitectura ligera y conexión con otros servicios (como OpenAI).
+Experimental laboratory using **Next.js v15** to explore and demonstrate the development of HTTP services (`/api`) with support for serverless deployment on **Vercel**. Ideal for lightweight architecture practices and integration with other services (like OpenAI).
 
 ---
 
-## 🔗 Demo en Vivo
+## 🔗 Live Demo
 
-Puedes ver el laboratorio funcionando en producción aquí:
+You can see the lab running in production here:
 
 👉 [Next JS API Lab](api-lab-murex.vercel.app)
 
-Desplegado automáticamente con [Vercel](https://vercel.com), utilizando funciones serverless para los endpoints API.
+Automatically deployed with [Vercel](https://vercel.com), using serverless functions for the API endpoints.
 
 ---
 
-## 📡 Endpoints Disponibles
+## 📡 Available Endpoints
 
-Actualmente, esta API expone los siguientes endpoints públicos en formato JSON:
+This API currently exposes the following public endpoints in JSON format:
 
-### 🗺️ Ubicación (Colombia)
+### 🗺️ Location (Colombia)
 
-| Método | Endpoint                          | Descripción                                                                 |
+| Method | Endpoint                          | Description                                                                 |
 |--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/api/location/states`           | Retorna todos los departamentos de Colombia.                               |
-| GET    | `/api/location/cities`           | Retorna todas las ciudades y municipios del país.                          |
-| GET    | `/api/location/states/:id`       | Retorna las ciudades y municipios del departamento especificado por `:id`. |
+| GET    | `/api/location/states`           | Returns all departments of Colombia.                               |
+| GET    | `/api/location/cities`           | Returns all cities and municipalities in the country.                          |
+| GET    | `/api/location/states/:id`       | Returns the cities and municipalities of the department specified by `:id`. |
 
 > [!WARNING]
-> Actualmente **no requieren headers especiales**. Todas las respuestas están en formato `application/json`.
+> Currently **no special headers are required**. All responses are in `application/json` format.
 
 ---
 
-## 🛠️ Requerimientos
+## 🛠️ Requirements
 
 - [Node](https://nodejs.org/)
 - [Git](https://git-scm.com/)
 
-## 💻 Ejecucion local
+## 💻 Local Setup
 
-Clonar el repositorio
+Clone the repository
 ```bash
     git clone https://github.com/AndresOrozcoDev/next_api_lab.git
     cd next_api_lab
 ```
 
-Instalar las dependencias
+Install dependencies
 ```bash
     npm install
 ```
 
-Ejecutar el servidor
+Run the development server
 ```bash
     npm run dev
 ```
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-Desarrollado con 💙 por [Andrés Orozco](https://github.com/AndresOrozcoDev)
+Developed with 💙 by [Andrés Orozco](https://github.com/AndresOrozcoDev)
 
 - 📬 [andresorozcodev@gmail.com](mailto:andresorozcodev@gmail.com)
 - 🌐 [LinkedIn](https://www.linkedin.com/in/andresorozcodev)
