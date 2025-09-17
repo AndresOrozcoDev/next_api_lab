@@ -7,18 +7,16 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
     const cities = await getCitiesByStateId(id);
 
     return NextResponse.json({
-      status_code: 200,
-      message: 'success',
+      success: true,
+      message: 'Cities by states obtained correctly',
       data: cities,
-    });
+    }, { status: 200 });
   } catch (error: unknown) {
     console.error('Error:', error);
-    return NextResponse.json(
-      {
-        status_code: 500,
-        message: 'Internal server error',
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      message: 'Internal server error',
+      data: null,
+    }, { status: 500 });
   }
 }

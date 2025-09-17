@@ -5,15 +5,15 @@ export async function GET() {
   try {
     const states = await getAllStates();
     return NextResponse.json({
-      status_code: 200,
-      message: 'success',
+      success: true,
+      message: 'States obtained correctly',
       data: states,
-    });
+    }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching states:', error);
-    return NextResponse.json(
-      { status_code: 500, message: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      message: 'Internal server error',
+      data: null,
+    }, { status: 500 });
   }
 }

@@ -42,12 +42,6 @@ Actualmente, esta API expone los siguientes endpoints públicos en formato JSON:
 | GET    | `/api/location/cities`           | Retorna todas las ciudades y municipios del país.                          |
 | GET    | `/api/location/states/:id`       | Retorna las ciudades y municipios del departamento especificado por `:id`. |
 
-### 🤖 OpenAI Chat
-
-| Método | Endpoint                 | Descripción                                                                 |
-|--------|--------------------------|-----------------------------------------------------------------------------|
-| POST   | `/api/openai/message`    | Envía un mensaje al modelo GPT y retorna una respuesta generada por IA.    |
-
 > [!WARNING]
 > Actualmente **no requieren headers especiales**. Todas las respuestas están en formato `application/json`.
 

@@ -5,15 +5,16 @@ export async function GET() {
   try {
     const municipalities = await getAllCities();
     return NextResponse.json({
-      status_code: 200,
-      message: 'success',
+      success: true,
+      message: 'Municipalities obtained correctly',
       data: municipalities,
-    });
+    }, { status: 200 });
   } catch (error) {
     console.error('Error fetching municipalities:', error);
-    return NextResponse.json(
-      { status_code: 500, message: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      message: 'Internal server error',
+      data: null,
+    }, { status: 500 });
   }
 }
