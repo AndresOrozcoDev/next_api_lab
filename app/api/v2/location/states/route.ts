@@ -5,6 +5,7 @@ export async function GET() {
   try {
     const states = await getAllStates();
     return NextResponse.json({
+      status: 200,
       success: true,
       message: 'States obtained correctly (v2)',
       data: states,
@@ -12,6 +13,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching states:', error);
     return NextResponse.json({
+      status: 500,
       success: false,
       message: 'Internal server error',
       data: null,
