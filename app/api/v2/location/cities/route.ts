@@ -1,8 +1,20 @@
 import { getCitiesPaginated } from '@/app/lib/location.service';
 import { NextRequest, NextResponse } from 'next/server';
 
+const ALLOWED_ORIGINS = [
+  'http://localhost:4200',
+  'https://paginator-six.vercel.app'
+];
+
 export async function GET(req: NextRequest) {
   try {
+    const origin = req.headers.get('origin') || '';
+    const isAllowed = ALLOWED_ORIGINS.includes(origin);
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': isAllowed ? origin : '',
+      'Access-Control-Allow-Methods': 'GET,OPTIONS',
+      'Access-Control-Allow-Headers': '*'
+    };
     const { searchParams } = new URL(req.url);
 
     const page = Number(searchParams.get('page')) || 1;
@@ -18,7 +30,7 @@ export async function GET(req: NextRequest) {
           totalRecords: 0,
           data: [],
         },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -41,7 +53,7 @@ export async function GET(req: NextRequest) {
           pageSize,
         },
       },
-      { status: 200 }
+      { status: 200, headers: corsHeaders }
     );
   } catch (error) {
     console.error('Error obteniendo ciudades:', error);
@@ -52,7 +64,11 @@ export async function GET(req: NextRequest) {
         totalRecords: 0,
         data: [],
       },
-      { status: 500 }
+      { status: 500, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+        } } }
     );
   }
 }
