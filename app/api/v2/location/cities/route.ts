@@ -72,3 +72,17 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+export function OPTIONS(req: NextRequest) {
+  const origin = req.headers.get('origin') || '';
+  const isAllowed = ALLOWED_ORIGINS.includes(origin);
+
+  return NextResponse.json({}, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': isAllowed ? origin : '',
+      'Access-Control-Allow-Methods': 'GET,OPTIONS',
+      'Access-Control-Allow-Headers': '*',
+    }
+  });
+}
