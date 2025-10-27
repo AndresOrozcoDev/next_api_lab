@@ -2,19 +2,34 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { MockData, Municipio } from '../types/data';
 
-const loadStates = async (): Promise<MockData> => {
+const loadMock = async (): Promise<MockData> => {
   const filePath = path.join(process.cwd(), 'public', 'mock.json');
   const fileContent = await fs.readFile(filePath, 'utf-8');
   return JSON.parse(fileContent);
 };
 
 export const getAllCities = async (): Promise<Municipio[]> => {
-  const mock = await loadStates();
+  const mock = await loadMock();
   return mock.data;
 };
 
+export const getCitiesPaginated = async ({page, pageSize, stateId}: {page: number; pageSize: number; stateId?: string}) => {
+  let cities = await getAllCities();
+
+  // Filtro opcional por estado
+  if (stateId) { cities = cities.filter((c) => c.state_dane_code === stateId) }
+
+  const total = cities.length;
+  const totalPages = Math.ceil(total / pageSize);
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  const paginated = cities.slice(start, end);
+
+  return { cities: paginated, total, totalPages };
+};
+
 export const getAllStates = async () => {
-  const municipios = await loadStates();
+  const municipios = await loadMock();
   const uniqueStates: Record<string, string> = {};
 
   municipios.data.forEach((item) => {
@@ -29,14 +44,4 @@ export const getAllStates = async () => {
       state: uniqueStates[stateCode],
     }))
     .sort((a, b) => a.state.localeCompare(b.state));
-};
-
-export const getCitiesByStateId = async (stateId: string) => {
-  const municipios = await loadStates();
-  return municipios.data
-    .filter((item) => item.state_dane_code === stateId)
-    .map((item) => ({
-      id: item.city_dane_code,
-      city: item.city,
-    }));
 };
