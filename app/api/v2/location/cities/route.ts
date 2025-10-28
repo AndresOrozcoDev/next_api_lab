@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json(
         {
           status: 400,
+          success: false,
           message: 'Parámetros de paginación inválidos',
           totalRecords: 0,
           data: [],
@@ -43,6 +44,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         status: 200,
+        success: true,
         message: 'Respuesta exitosa obteniendo las ciudades',
         totalRecords: cities.length,
         data: cities,
@@ -60,17 +62,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         status: 500,
+        success: false,
         message: 'Error interno del servidor',
         totalRecords: 0,
         data: [],
       },
-      { status: 500, headers: {
+      {
+        status: 500, headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET,OPTIONS',
           'Access-Control-Allow-Headers': '*'
-        } } }
+        }
+      } 
     );
-  }
+}
 }
 
 export function OPTIONS(req: NextRequest) {

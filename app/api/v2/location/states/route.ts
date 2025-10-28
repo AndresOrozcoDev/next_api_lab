@@ -1,12 +1,12 @@
 import { getAllStates } from '@/app/lib/location.service';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const ALLOWED_ORIGINS = [
   'http://localhost:4200',
   'https://paginator-six.vercel.app'
 ];
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const origin = req.headers.get('origin') || '';
     const isAllowed = ALLOWED_ORIGINS.includes(origin);
@@ -29,11 +29,13 @@ export async function GET() {
       success: false,
       message: 'Internal server error',
       data: null,
-    }, { status: 500, headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': '*'
-    } });
+    }, {
+      status: 500, headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS',
+        'Access-Control-Allow-Headers': '*'
+      }
+    });
   }
 }
 
