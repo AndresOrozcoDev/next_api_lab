@@ -70,6 +70,18 @@ Run the development server
     npm run dev
 ```
 
+## Maintenance Checklist
+Review package vulnerabilities in production
+```bash
+    npm audit fix
+```
+
+## Deployments
+Generate the production build
+```bash
+    npm run build
+```
+
 ---
 
 ## 👨‍💻 Author
