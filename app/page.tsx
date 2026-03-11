@@ -1,4 +1,5 @@
 import React, { JSX } from "react";
+import Link from "next/link";
 
 export default function Home(): JSX.Element {
   return (
@@ -8,9 +9,9 @@ export default function Home(): JSX.Element {
           Bienvenido a mi página principal
         </h1>
         <p style={{ fontSize: "1.2rem", marginBottom: "1.5rem" }}>
-          Esta es una página de ejemplo para la ruta "/" usando Next.js con TypeScript.
+          Esta es una página de ejemplo para la ruta principal / usando Next.js con TypeScript.
         </p>
-        <a
+        <Link
           href="/not-found"
           style={{
             color: "#0070f3",
@@ -19,7 +20,7 @@ export default function Home(): JSX.Element {
           }}
         >
           Ir a página 404 de prueba
-        </a>
+        </Link>
       </div>
     </main>
   );

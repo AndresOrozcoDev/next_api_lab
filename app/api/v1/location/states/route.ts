@@ -9,7 +9,7 @@ export async function GET() {
       message: 'States obtained correctly',
       data: states,
     }, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({
       success: false,
       message: 'Internal server error',

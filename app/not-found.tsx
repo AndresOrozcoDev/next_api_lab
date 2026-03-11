@@ -1,4 +1,5 @@
 import React, { JSX } from "react";
+import Link from "next/link";
 
 export default function NotFound(): JSX.Element {
   return (
@@ -10,12 +11,12 @@ export default function NotFound(): JSX.Element {
         <p style={{ marginBottom: "1rem" }}>
           The page you are looking for does not exist.
         </p>
-        <a
+        <Link
           href="/"
           style={{ color: "#0070f3", textDecoration: "underline", fontWeight: "bold" }}
         >
           Back to home
-        </a>
+        </Link>
       </div>
     </main>
   );
