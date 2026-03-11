@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     const corsHeaders = {
       'Access-Control-Allow-Origin': isAllowed ? origin : '*',
       'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': '*'
+      'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
     };
     const states = await getAllStates();
     return NextResponse.json({
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
       status: 500, headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,OPTIONS',
-        'Access-Control-Allow-Headers': '*'
+        'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
       }
     });
   }
