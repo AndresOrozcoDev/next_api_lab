@@ -26,7 +26,7 @@ You can see the lab running in production here:
 
 👉 [Next JS API Lab](api-lab-murex.vercel.app)
 
-Automatically deployed with [Vercel](https://vercel.com), using serverless functions for the API endpoints.
+Automatically deployed with [Vercel](https://vercel.com), using **serverless** functions for the API endpoints.
 
 ---
 
@@ -38,12 +38,12 @@ This API currently exposes the following public endpoints in JSON format:
 
 | Method | Endpoint                          | Description                                                                 |
 |--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/api/location/states`           | Returns all departments of Colombia.                               |
-| GET    | `/api/location/cities`           | Returns all cities and municipalities in the country.                          |
-| GET    | `/api/location/states/:id`       | Returns the cities and municipalities of the department specified by `:id`. |
+| GET    | `/api/v#/location/states`           | Returns all departments of Colombia.                               |
+| GET    | `/api/v#/location/cities`           | Returns all cities and municipalities in the country.                          |
+| GET    | `/api/v#/location/states/:id`       | Returns the cities and municipalities of the department specified by `:id`. |
 
 > [!WARNING]
-> Currently **no special headers are required**. All responses are in `application/json` format.
+> Protected endpoints require the `x-api-key` header. All responses are in `application/json` format.
 
 ---
 
@@ -68,6 +68,60 @@ Install dependencies
 Run the development server
 ```bash
     npm run dev
+```
+
+## 📁 Project Structure
+
+```bash
+next_api_lab/
+├── app/
+│   ├── api/
+│   │   ├── v1/
+│   │   │   └── location/
+│   │   │       ├── cities/
+│   │   │       │   └── route.ts
+│   │   │       └── states/
+│   │   │           └── route.ts
+│   │   └── v2/
+│   │       └── location/
+│   │           ├── cities/
+│   │           │   └── route.ts
+│   │           └── states/
+│   │               └── route.ts
+│   ├── lib/
+│   │   └── location.service.ts
+│   ├── types/
+│   │   └── data.ts
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+│   └── mock.json
+├── middleware.ts
+├── next.config.ts
+├── eslint.config.mjs
+├── tsconfig.json
+└── package.json
+```
+
+## 🔐 Environment Variables
+
+This project uses environment variables to protect API access through middleware.
+
+Create a `.env.local` file in the project root:
+
+```bash
+API_KEY=your-secure-api-key
+```
+
+Required variables:
+
+- `API_KEY`: Secret key validated in the `x-api-key` header for `/api/v1/location/*` and `/api/v2/location/*` endpoints.
+
+Example request with header:
+
+```bash
+curl -H "x-api-key: your-secure-api-key" http://localhost:3000/api/v1/location/states
 ```
 
 ## Maintenance Checklist

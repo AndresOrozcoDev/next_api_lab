@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
         {
           status: 400,
           success: false,
-          message: 'Parámetros de paginación inválidos',
+          message: 'Invalid paging parameters',
           totalRecords: 0,
           data: [],
         },
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
       {
         status: 200,
         success: true,
-        message: 'Respuesta exitosa obteniendo las ciudades',
+        message: 'Successfully retrieved cities',
         totalRecords: cities.length,
         data: cities,
         pagination: {
@@ -58,12 +58,12 @@ export async function GET(req: NextRequest) {
       { status: 200, headers: corsHeaders }
     );
   } catch (error) {
-    console.error('Error obteniendo ciudades:', error);
+    console.error('Error retrieving cities:', error);
     return NextResponse.json(
       {
         status: 500,
         success: false,
-        message: 'Error interno del servidor',
+        message: 'Internal server error',
         totalRecords: 0,
         data: [],
       },
