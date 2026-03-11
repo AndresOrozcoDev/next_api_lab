@@ -35,6 +35,9 @@ export async function GET(req: NextRequest) {
     }, { status: 200, headers: corsHeaders });
   } catch (error) {
     console.error('Error fetching states:', error);
+    const origin = req.headers.get('origin') || '';
+    const corsHeaders = getCorsHeaders(origin);
+    
     return NextResponse.json({
       status: 500,
       success: false,
