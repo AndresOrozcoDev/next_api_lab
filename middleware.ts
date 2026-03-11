@@ -1,7 +1,10 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
+    if (req.method === 'OPTIONS') {
+        return NextResponse.next();
+    }
+
     const key = req.headers.get("x-api-key");
 
     if (!key || key !== process.env.API_KEY) {

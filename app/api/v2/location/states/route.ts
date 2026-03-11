@@ -19,7 +19,7 @@ export function OPTIONS(req: NextRequest) {
   const origin = req.headers.get('origin') || '';
   const corsHeaders = getCorsHeaders(origin);
 
-  return NextResponse.json({}, { status: 204, headers: corsHeaders });
+  return new NextResponse(null, { status: 204, headers: corsHeaders });
 }
 
 export async function GET(req: NextRequest) {
