@@ -6,15 +6,26 @@ const ALLOWED_ORIGINS = [
   'https://paginator-six.vercel.app'
 ];
 
+function getCorsHeaders(origin: string) {
+  const isAllowed = ALLOWED_ORIGINS.includes(origin);
+  return {
+    'Access-Control-Allow-Origin': isAllowed ? origin : '*',
+    'Access-Control-Allow-Methods': 'GET,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+  };
+}
+
+export function OPTIONS(req: NextRequest) {
+  const origin = req.headers.get('origin') || '';
+  const corsHeaders = getCorsHeaders(origin);
+
+  return NextResponse.json({}, { status: 204, headers: corsHeaders });
+}
+
 export async function GET(req: NextRequest) {
   try {
     const origin = req.headers.get('origin') || '';
-    const isAllowed = ALLOWED_ORIGINS.includes(origin);
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': isAllowed ? origin : '*',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
-    };
+    const corsHeaders = getCorsHeaders(origin);
     const states = await getAllStates();
     return NextResponse.json({
       status: 200,
@@ -29,26 +40,6 @@ export async function GET(req: NextRequest) {
       success: false,
       message: 'Internal server error',
       data: null,
-    }, {
-      status: 500, headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
-      }
-    });
+    }, { status: 500, headers: corsHeaders });
   }
-}
-
-export function OPTIONS(req: NextRequest) {
-  const origin = req.headers.get('origin') || '';
-  const isAllowed = ALLOWED_ORIGINS.includes(origin);
-
-  return NextResponse.json({}, {
-    status: 204,
-    headers: {
-      'Access-Control-Allow-Origin': isAllowed ? origin : '*',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': '*',
-    }
-  });
 }
