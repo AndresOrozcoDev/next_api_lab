@@ -6,15 +6,27 @@ const ALLOWED_ORIGINS = [
   'https://paginator-six.vercel.app'
 ];
 
+function getCorsHeaders(origin: string) {
+  const isAllowed = ALLOWED_ORIGINS.includes(origin);
+  return {
+    'Access-Control-Allow-Origin': isAllowed ? origin : '*',
+    'Access-Control-Allow-Methods': 'GET,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+  };
+}
+
+export function OPTIONS(req: NextRequest) {
+  const origin = req.headers.get('origin') || '';
+  const corsHeaders = getCorsHeaders(origin);
+
+  return NextResponse.json({}, { status: 204, headers: corsHeaders });
+}
+
 export async function GET(req: NextRequest) {
   try {
     const origin = req.headers.get('origin') || '';
-    const isAllowed = ALLOWED_ORIGINS.includes(origin);
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': isAllowed ? origin : '*',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
-    };
+    const corsHeaders = getCorsHeaders(origin);
+    
     const { searchParams } = new URL(req.url);
 
     const page = Number(searchParams.get('page')) || 1;
@@ -59,6 +71,9 @@ export async function GET(req: NextRequest) {
     );
   } catch (error) {
     console.error('Error retrieving cities:', error);
+    const origin = req.headers.get('origin') || '';
+    const corsHeaders = getCorsHeaders(origin);
+
     return NextResponse.json(
       {
         status: 500,
@@ -67,27 +82,7 @@ export async function GET(req: NextRequest) {
         totalRecords: 0,
         data: [],
       },
-      {
-        status: 500, headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
-        }
-      } 
+      { status: 500, headers: corsHeaders }
     );
 }
-}
-
-export function OPTIONS(req: NextRequest) {
-  const origin = req.headers.get('origin') || '';
-  const isAllowed = ALLOWED_ORIGINS.includes(origin);
-
-  return NextResponse.json({}, {
-    status: 204,
-    headers: {
-      'Access-Control-Allow-Origin': isAllowed ? origin : '',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': '*',
-    }
-  });
 }
